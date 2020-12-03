@@ -12,7 +12,7 @@ import EventScreen from './screens/EventScreen'
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default function App(props) {
+export default function App() {
   function HomeScreen({navigation}){
     return(
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -44,7 +44,21 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={({route}) => ({
+        tabBarIcon:({focused,color,size}) =>{
+          let iconName;
+          if(route.name === 'Home'){
+            iconName = focused ? 'ios-home' : 'ios-home-outline';
+          } else if (route.name === 'Event'){
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          } else if(route.name === 'Content'){
+            iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+          }
+          return <Ionicons name={iconName} size={size} color={color} />
+        },
+        })}
+          tabBarOptions={{activeTintColor:'#FA2849', inactiveTintColor:'gray',}}
+        >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Event" component={EventScreen} />
         <Tab.Screen name="Content" component={ContentScreen} />

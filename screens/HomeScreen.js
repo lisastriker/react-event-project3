@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-export default function HomeScreen(){
+function HomeScreen(){
     return(
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Home!</Text>
@@ -15,3 +15,13 @@ export default function HomeScreen(){
     );
 
 }
+
+const EventStack = createStackNavigator();
+  export default function EventStackScreen() {
+ return (
+   <EventStack.Navigator>
+    <EventStack.Screen name="Home" component={EventScreen} />             
+    <EventStack.Screen name="Details" component={DetailScreen} />
+   </EventStack.Navigator>
+  );
+}*/
